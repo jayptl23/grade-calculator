@@ -6,7 +6,12 @@ type Props = {
 
 const AssessmentItem = ({assessment}: Props) => {
 	const {name, weight, score, total} = assessment
-	return <p>{`${name} | ${weight}% | Mark: ${score}/${total}`}</p>
+	return (
+		<article>
+			<p>{`${name} | Weight: ${weight}% | Mark: ${score}/${total}`}</p>
+			<button>Delete</button>
+		</article>
+	)
 }
 
 export default AssessmentItem
