@@ -1,4 +1,4 @@
-import { Assessments, IAssessment } from "./definitions";
+ import { Assessments, IAssessment } from "./definitions";
 
 // Utility functions
 const sumWeights = (assessments: Assessments): number => {
