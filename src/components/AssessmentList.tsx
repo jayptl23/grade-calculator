@@ -9,7 +9,7 @@ const AssessmentList = ({assessments}: Props) => {
 	return (
 		<section>
 			{assessments.map(assessment => (
-				<AssessmentItem key={assessment.name} assessment={assessment} />
+				<AssessmentItem key={assessment.id} assessment={assessment} />
 			))}
 		</section>
 	)

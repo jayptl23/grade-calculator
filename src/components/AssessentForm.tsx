@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {v4 as uuidv4} from 'uuid'
 import {IAssessment} from '../definitions'
 type Props = {
 	addAssessment: (assessment: IAssessment) => void
@@ -13,6 +14,7 @@ const AssessentForm = ({addAssessment}: Props) => {
 	const handleAddAssessmentSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
 		const newAssesment: IAssessment = {
+			id: uuidv4(),
 			name: assessmentName,
 			weight: parseFloat(weight),
 			score: parseFloat(score),

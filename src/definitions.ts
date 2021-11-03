@@ -1,4 +1,5 @@
 export interface IAssessment {
+    id: string
     name: string
     weight: number
     score: number
