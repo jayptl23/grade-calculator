@@ -1,4 +1,6 @@
+import {useAppDispatch} from '../app/hooks'
 import {IAssessment} from '../definitions'
+import {deleteAssessment} from '../features/assessmentsSlice'
 
 type Props = {
 	assessment: IAssessment
@@ -7,8 +9,10 @@ type Props = {
 const AssessmentItem = ({assessment}: Props) => {
 	const {id, name, weight, score, total} = assessment
 
+	const dispatch = useAppDispatch()
+
 	const handleDeleteClick = () => {
-		console.log('Clicked delete', id)
+		dispatch(deleteAssessment(id))
 	}
 
 	return (
