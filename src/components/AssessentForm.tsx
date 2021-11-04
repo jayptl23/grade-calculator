@@ -2,7 +2,8 @@ import {useState} from 'react'
 import {v4 as uuidv4} from 'uuid'
 import {useAppDispatch} from '../app/hooks'
 import {IAssessment} from '../definitions'
-import {addAssessment} from '../features/assessmentsSlice'
+import {addAssessment, incrementWeightSum} from '../features/assessmentsSlice'
+import {isAssessmentValid} from '../utils'
 
 const AssessentForm = () => {
 	const [assessmentName, setAssessmentName] = useState<string>('')
@@ -22,7 +23,13 @@ const AssessentForm = () => {
 			total: parseFloat(total),
 		}
 
+		const errors = isAssessmentValid(newAssesment)
+		if (errors.length !== 0) {
+			console.log(errors)
+			return
+		}
 		dispatch(addAssessment(newAssesment))
+		dispatch(incrementWeightSum(newAssesment.weight))
 
 		setAssessmentName('')
 		setWeight('')

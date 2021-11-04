@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import assessmentsReducer from '../features/assessmentsSlice'
+import gradeReducer from '../features/gradeSlice'
 
 export const store = configureStore({
   reducer: {
-    assessments: assessmentsReducer
+    assessments: assessmentsReducer,
+    finalGrade: gradeReducer
     // posts: postsReducer,
   },
 })

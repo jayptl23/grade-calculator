@@ -16,11 +16,11 @@ export const SAMPLE_ASSESSMENTS: Assessments = [
         score: 84,
         total: 100 
     },
-    {
-        id: uuidv4(),
-        name: "Final Exam",
-        weight: 60,
-        score: 68,
-        total: 100 
-    },
+    // {
+    //     id: uuidv4(),
+    //     name: "Final Exam",
+    //     weight: 60,
+    //     score: 68,
+    //     total: 100 
+    // },
 ]

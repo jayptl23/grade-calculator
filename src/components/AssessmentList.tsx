@@ -2,7 +2,7 @@ import {useAppSelector} from '../app/hooks'
 import AssessmentItem from './AssessmentItem'
 
 const AssessmentList = () => {
-	const assessments = useAppSelector(state => state.assessments)
+	const assessments = useAppSelector(state => state.assessments.assessments)
 	return (
 		<section>
 			{assessments.map(assessment => (

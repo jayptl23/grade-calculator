@@ -1,26 +1,28 @@
-import {useState} from 'react'
-import {useAppSelector} from './app/hooks'
+import {useAppDispatch, useAppSelector} from './app/hooks'
 import AssessentForm from './components/AssessentForm'
 import AssessmentList from './components/AssessmentList'
-import {getFinalGrade, isWeightSumOneHundred} from './utils'
+import {setGrade} from './features/gradeSlice'
+import {getFinalGrade} from './utils'
 
 const App = () => {
 	// Fetch state
-	const assessments = useAppSelector(state => state.assessments)
+	const assessments = useAppSelector(state => state.assessments.assessments)
+	const weightSum = useAppSelector(state => state.assessments.weightSum)
+	const finalGrade = useAppSelector(state => state.finalGrade)
 
-	// Final Grade
-	const [finalGrade, setFinalGrade] = useState<string>('')
+	const dispatch = useAppDispatch()
 
 	const handleCalculateFinalGradeClick = () => {
-		setFinalGrade(getFinalGrade(assessments).toString())
+		const finalGrade = getFinalGrade(assessments)
+		dispatch(setGrade(finalGrade))
 	}
 
-	const calculateGrade = isWeightSumOneHundred(assessments) ? <button onClick={handleCalculateFinalGradeClick}>Calculate Final Grade</button> : null
+	const calculateGrade = weightSum === 100 ? <button onClick={handleCalculateFinalGradeClick}>Calculate Final Grade</button> : null
 	return (
 		<div>
 			{calculateGrade ? calculateGrade : <AssessentForm />}
 			<AssessmentList />
-			{finalGrade && <p>Final Grade: {finalGrade}</p>}
+			{finalGrade !== null && <p>Final Grade: {finalGrade}</p>}
 		</div>
 	)
 }

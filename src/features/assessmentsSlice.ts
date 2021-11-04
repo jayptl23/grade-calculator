@@ -2,7 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Assessments, IAssessment } from "../definitions";
 import { SAMPLE_ASSESSMENTS } from "../mock-data";
 
-const initialState: Assessments = SAMPLE_ASSESSMENTS
+interface State {
+    assessments: Assessments
+    weightSum: number
+}
+
+const initialState: State = {
+    assessments: SAMPLE_ASSESSMENTS,
+    weightSum: 40 
+}
 
 const assessmentsSlice = createSlice({
     name: 'assessments',
@@ -10,16 +18,22 @@ const assessmentsSlice = createSlice({
     reducers: {
         addAssessment: (state, action) => {
             console.log(action)
-            state.push(action.payload)
+            state.assessments.push(action.payload)
         },
         deleteAssessment: (state, action) => {
             console.log(action)
-            const index = state.findIndex((assessment: IAssessment) => assessment.id === action.payload)
-            state.splice(index, 1)
+            const index = state.assessments.findIndex((assessment: IAssessment) => assessment.id === action.payload)
+            state.assessments.splice(index, 1)
+        },
+        incrementWeightSum: (state, action) => {
+            state.weightSum += action.payload
+        },
+        decrementWeightSum: (state, action) => {
+            state.weightSum -= action.payload
         }
     }
 })
 
-export const {addAssessment, deleteAssessment} = assessmentsSlice.actions
+export const {addAssessment, deleteAssessment, incrementWeightSum, decrementWeightSum} = assessmentsSlice.actions
 
 export default assessmentsSlice.reducer
