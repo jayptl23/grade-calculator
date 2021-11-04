@@ -5,11 +5,16 @@ type Props = {
 }
 
 const AssessmentItem = ({assessment}: Props) => {
-	const {name, weight, score, total} = assessment
+	const {id, name, weight, score, total} = assessment
+
+	const handleDeleteClick = () => {
+		console.log('Clicked delete', id)
+	}
+
 	return (
 		<article>
 			<p>{`${name} | Weight: ${weight}% | Mark: ${score}/${total}`}</p>
-			<button>Delete</button>
+			<button onClick={handleDeleteClick}>Delete</button>
 		</article>
 	)
 }

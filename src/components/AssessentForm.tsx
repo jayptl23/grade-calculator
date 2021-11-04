@@ -1,15 +1,16 @@
 import {useState} from 'react'
 import {v4 as uuidv4} from 'uuid'
+import {useAppDispatch} from '../app/hooks'
 import {IAssessment} from '../definitions'
-type Props = {
-	addAssessment: (assessment: IAssessment) => void
-}
+import {addAssessment} from '../features/assessmentsSlice'
 
-const AssessentForm = ({addAssessment}: Props) => {
+const AssessentForm = () => {
 	const [assessmentName, setAssessmentName] = useState<string>('')
 	const [weight, setWeight] = useState<string>('')
 	const [score, setScore] = useState<string>('')
 	const [total, setTotal] = useState<string>('')
+
+	const dispatch = useAppDispatch()
 
 	const handleAddAssessmentSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
@@ -21,7 +22,8 @@ const AssessentForm = ({addAssessment}: Props) => {
 			total: parseFloat(total),
 		}
 
-		addAssessment(newAssesment)
+		dispatch(addAssessment(newAssesment))
+
 		setAssessmentName('')
 		setWeight('')
 		setScore('')

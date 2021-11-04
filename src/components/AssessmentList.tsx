@@ -1,11 +1,8 @@
-import {Assessments} from '../definitions'
+import {useAppSelector} from '../app/hooks'
 import AssessmentItem from './AssessmentItem'
 
-type Props = {
-	assessments: Assessments
-}
-
-const AssessmentList = ({assessments}: Props) => {
+const AssessmentList = () => {
+	const assessments = useAppSelector(state => state.assessments)
 	return (
 		<section>
 			{assessments.map(assessment => (

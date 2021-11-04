@@ -1,14 +1,12 @@
 import {useState} from 'react'
+import {useAppSelector} from './app/hooks'
 import AssessentForm from './components/AssessentForm'
 import AssessmentList from './components/AssessmentList'
-import {Assessments, IAssessment} from './definitions'
-import {SAMPLE_ASSESSMENTS} from './mock-data'
 import {getFinalGrade, isWeightSumOneHundred} from './utils'
 
-const initialState = SAMPLE_ASSESSMENTS
 const App = () => {
-	// List of assessments to render
-	const [assessments, setAssessments] = useState<Assessments>([])
+	// Fetch state
+	const assessments = useAppSelector(state => state.assessments)
 
 	// Final Grade
 	const [finalGrade, setFinalGrade] = useState<string>('')
@@ -17,15 +15,11 @@ const App = () => {
 		setFinalGrade(getFinalGrade(assessments).toString())
 	}
 
-	const addAssessment = (newAssessment: IAssessment) => {
-		setAssessments(prevAssessments => [...prevAssessments, newAssessment])
-	}
-
 	const calculateGrade = isWeightSumOneHundred(assessments) ? <button onClick={handleCalculateFinalGradeClick}>Calculate Final Grade</button> : null
 	return (
 		<div>
-			{calculateGrade ? calculateGrade : <AssessentForm addAssessment={addAssessment} />}
-			<AssessmentList assessments={assessments} />
+			{calculateGrade ? calculateGrade : <AssessentForm />}
+			<AssessmentList />
 			{finalGrade && <p>Final Grade: {finalGrade}</p>}
 		</div>
 	)
