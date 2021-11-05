@@ -38,12 +38,14 @@ const AssessentForm = () => {
 	}
 
 	return (
-		<form onSubmit={event => handleAddAssessmentSubmit(event)}>
-			<input name='assessmentName' required type='text' placeholder='Name' onChange={event => setAssessmentName(event.target.value)} value={assessmentName} />
-			<input name='weight' required type='number' placeholder='Weight %' onChange={event => setWeight(event.target.value)} value={weight} />
-			<input name='score' required type='number' placeholder='Score' onChange={event => setScore(event.target.value)} value={score} /> {'/ '}
-			<input name='total' required type='number' placeholder='Total' onChange={event => setTotal(event.target.value)} value={total} />
-			{<button type='submit'>Add Assessment</button>}
+		<form className='space-y-1' onSubmit={event => handleAddAssessmentSubmit(event)}>
+			<input className='input' name='assessmentName' required type='text' placeholder='Name' onChange={event => setAssessmentName(event.target.value)} value={assessmentName} />
+			<input className='input' name='weight' required type='number' placeholder='Weight %' onChange={event => setWeight(event.target.value)} value={weight} />
+			<input className='input' name='score' required type='number' placeholder='Score' onChange={event => setScore(event.target.value)} value={score} />
+			<input className='input' name='total' required type='number' placeholder='Total' onChange={event => setTotal(event.target.value)} value={total} />
+			<button className='bg-green-500 text-white font-medium w-full py-1 rounded' type='submit'>
+				Add Assessment
+			</button>
 		</form>
 	)
 }

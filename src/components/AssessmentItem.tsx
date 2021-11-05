@@ -2,6 +2,7 @@ import {useAppDispatch, useAppSelector} from '../app/hooks'
 import {IAssessment} from '../definitions'
 import {decrementWeightSum, deleteAssessment} from '../features/assessmentsSlice'
 import {setGrade} from '../features/gradeSlice'
+import {XCircleIcon} from '@heroicons/react/outline'
 
 type Props = {
 	assessment: IAssessment
@@ -22,9 +23,15 @@ const AssessmentItem = ({assessment}: Props) => {
 	}
 
 	return (
-		<article>
-			<p>{`${name} | Weight: ${weight}% | Mark: ${score}/${total}`}</p>
-			<button onClick={handleDeleteClick}>Delete</button>
+		<article className='text-sm flex items-center justify-between px-1'>
+			<div>
+				<p className='font-semibold text-gray-600'>{`${name} • Weight: ${weight}%`}</p>
+				<p className='text-xs'>{`Mark: ${score}/${total}`}</p>
+			</div>
+			<XCircleIcon onClick={handleDeleteClick} className='h-6 text-red-600' />
+			{/* <button onClick={handleDeleteClick}>
+				<XCircleIcon />
+			</button> */}
 		</article>
 	)
 }

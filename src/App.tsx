@@ -17,12 +17,17 @@ const App = () => {
 		dispatch(setGrade(finalGrade))
 	}
 
-	const calculateGrade = weightSum === 100 ? <button onClick={handleCalculateFinalGradeClick}>Calculate Final Grade</button> : null
+	const calculateGrade =
+		weightSum === 100 ? (
+			<button className='bg-green-600 text-white font-medium w-full py-1 rounded' onClick={handleCalculateFinalGradeClick}>
+				Calculate Final Grade
+			</button>
+		) : null
 	return (
-		<div>
-			{calculateGrade ? calculateGrade : <AssessentForm />}
+		<div className='border-2 border-solid border-red-500 h-screen p-2 sm:max-w-md sm:mx-auto'>
+			<div className='mb-2'>{calculateGrade ? calculateGrade : <AssessentForm />}</div>
+			{finalGrade !== null && <p className='mb-2 text-center font-medium'>Final Grade: {finalGrade}</p>}
 			<AssessmentList />
-			{finalGrade !== null && <p>Final Grade: {finalGrade}</p>}
 		</div>
 	)
 }
