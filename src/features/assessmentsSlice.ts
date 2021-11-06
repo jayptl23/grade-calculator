@@ -17,11 +17,9 @@ const assessmentsSlice = createSlice({
     initialState,
     reducers: {
         addAssessment: (state, action) => {
-            console.log(action)
             state.assessments.push(action.payload)
         },
         deleteAssessment: (state, action) => {
-            console.log(action)
             const index = state.assessments.findIndex((assessment: IAssessment) => assessment.id === action.payload)
             state.assessments.splice(index, 1)
         },

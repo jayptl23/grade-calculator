@@ -27,7 +27,6 @@ const AssessentForm = () => {
 		const errors = isAssessmentValid(newAssesment)
 		if (errors.length !== 0) {
 			dispatch(setErrors(errors))
-			console.log(errors)
 			return
 		}
 		// dispatch action to set errors to empty
@@ -42,34 +41,26 @@ const AssessentForm = () => {
 	}
 
 	return (
-		<form className='w-full space-y-1' onSubmit={event => handleAddAssessmentSubmit(event)}>
+		<form className='w-full space-y-' onSubmit={event => handleAddAssessmentSubmit(event)}>
 			<div>
-				<label className='label' htmlFor=''>
-					Name
-				</label>
+				<label className='label'>Name</label>
 				<input className='input' name='assessmentName' required type='text' placeholder='Final Exam' onChange={event => setAssessmentName(event.target.value)} value={assessmentName} />
 			</div>
 			<section className='flex space-x-1'>
 				<div className='flex-1'>
-					<label className='label' htmlFor=''>
-						Weight (%)
-					</label>
+					<label className='label'>Weight (%)</label>
 					<input className='input' name='weight' required type='number' min='1' max='100' placeholder='60' onChange={event => setWeight(event.target.value)} value={weight} />
 				</div>
 				<div className='flex-1'>
-					<label className='label' htmlFor=''>
-						Score
-					</label>
-					<input className='input' name='score' required type='number' min='1' placeholder='75' onChange={event => setScore(event.target.value)} value={score} />
+					<label className='label'>Score</label>
+					<input className='input' name='score' required type='number' step='any' min='1' placeholder='75' onChange={event => setScore(event.target.value)} value={score} />
 				</div>
 				<div className='flex-1'>
-					<label className='label' htmlFor=''>
-						Total{' '}
-					</label>
+					<label className='label'>Total </label>
 					<input className='input' name='total' required type='number' min='1' placeholder='100' onChange={event => setTotal(event.target.value)} value={total} />
 				</div>
 			</section>
-			<button className='bg-green-500 text-white font-medium w-full py-1 rounded mt-1' type='submit'>
+			<button className='bg-green-500 text-white font-medium w-full py-1 rounded mt-2' type='submit'>
 				Add Assessment
 			</button>
 		</form>

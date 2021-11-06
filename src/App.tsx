@@ -22,7 +22,7 @@ const App = () => {
 		weightSum === 100 ? (
 			<button
 				disabled={finalGrade !== null}
-				className={`font-medium w-full py-1 rounded sm:w-1/2 ${finalGrade ? 'cursor-not-allowed bg-gray-200 text-gray-400' : 'bg-green-600 text-white'}`}
+				className={`font-medium w-full py-1 rounded sm:w-1/2 ${finalGrade ? 'cursor-not-allowed bg-gray-300 text-gray-400' : 'bg-green-600 text-white'}`}
 				onClick={handleCalculateFinalGradeClick}
 			>
 				Calculate Final Grade
