@@ -14,4 +14,8 @@
 
 		/* bg-gray-200 appearance-none border-2 border-gray-200    focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" value="Jane Doe" */
 	}
+
+	.label {
+		@apply text-xs font-semibold;
+	}
 }

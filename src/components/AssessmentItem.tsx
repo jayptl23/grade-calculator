@@ -28,7 +28,7 @@ const AssessmentItem = ({assessment}: Props) => {
 				<p className='font-semibold text-gray-600'>{`${name} • Weight: ${weight}%`}</p>
 				<p className='text-xs'>{`Mark: ${score}/${total}`}</p>
 			</div>
-			<XCircleIcon onClick={handleDeleteClick} className='h-6 text-red-600' />
+			<XCircleIcon onClick={handleDeleteClick} className='h-6 text-red-600 cursor-pointer' />
 			{/* <button onClick={handleDeleteClick}>
 				<XCircleIcon />
 			</button> */}

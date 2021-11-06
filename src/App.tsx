@@ -1,6 +1,7 @@
 import {useAppDispatch, useAppSelector} from './app/hooks'
 import AssessentForm from './components/AssessentForm'
 import AssessmentList from './components/AssessmentList'
+import ErrorList from './components/ErrorList'
 import {setGrade} from './features/gradeSlice'
 import {getFinalGrade} from './utils'
 
@@ -19,13 +20,18 @@ const App = () => {
 
 	const calculateGrade =
 		weightSum === 100 ? (
-			<button className='bg-green-600 text-white font-medium w-full py-1 rounded' onClick={handleCalculateFinalGradeClick}>
+			<button
+				disabled={finalGrade !== null}
+				className={`font-medium w-full py-1 rounded sm:w-1/2 ${finalGrade ? 'cursor-not-allowed bg-gray-200 text-gray-400' : 'bg-green-600 text-white'}`}
+				onClick={handleCalculateFinalGradeClick}
+			>
 				Calculate Final Grade
 			</button>
 		) : null
 	return (
-		<div className='border-2 border-solid border-red-500 h-screen p-2 sm:max-w-md sm:mx-auto'>
-			<div className='mb-2'>{calculateGrade ? calculateGrade : <AssessentForm />}</div>
+		<div className='h-screen p-2 sm:max-w-md sm:mx-auto'>
+			<ErrorList />
+			<div className='mb-2 sm:flex sm:justify-center'>{calculateGrade ? calculateGrade : <AssessentForm />}</div>
 			{finalGrade !== null && <p className='mb-2 text-center font-medium'>Final Grade: {finalGrade}</p>}
 			<AssessmentList />
 		</div>
