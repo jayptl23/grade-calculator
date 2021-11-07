@@ -7,7 +7,11 @@ interface State {
     weightSum: number
 }
 
-const initialState: State = {
+let resLocal = localStorage.getItem('assessmentState')
+console.log('Fetching from local storage: ', resLocal)
+const data = resLocal !== null ? JSON.parse(resLocal) as State : null
+
+const initialState: State = data ?? {
     assessments: SAMPLE_ASSESSMENTS,
     weightSum: 40 
 }
@@ -17,21 +21,21 @@ const assessmentsSlice = createSlice({
     initialState,
     reducers: {
         addAssessment: (state, action) => {
+            console.log(action)
             state.assessments.push(action.payload)
+            state.weightSum += action.payload.weight
+            localStorage.setItem('assessmentState', JSON.stringify(state))
         },
         deleteAssessment: (state, action) => {
             const index = state.assessments.findIndex((assessment: IAssessment) => assessment.id === action.payload)
+            const assessmentToBeDeleted = state.assessments[index]
+            state.weightSum -= assessmentToBeDeleted.weight
             state.assessments.splice(index, 1)
+            localStorage.setItem('assessmentState', JSON.stringify(state))
         },
-        incrementWeightSum: (state, action) => {
-            state.weightSum += action.payload
-        },
-        decrementWeightSum: (state, action) => {
-            state.weightSum -= action.payload
-        }
     }
 })
 
-export const {addAssessment, deleteAssessment, incrementWeightSum, decrementWeightSum} = assessmentsSlice.actions
+export const {addAssessment, deleteAssessment} = assessmentsSlice.actions
 
 export default assessmentsSlice.reducer

@@ -1,6 +1,6 @@
 import {useAppDispatch, useAppSelector} from '../app/hooks'
 import {IAssessment} from '../definitions'
-import {decrementWeightSum, deleteAssessment} from '../features/assessmentsSlice'
+import {deleteAssessment} from '../features/assessmentsSlice'
 import {setGrade} from '../features/gradeSlice'
 import {XCircleIcon} from '@heroicons/react/outline'
 
@@ -19,7 +19,6 @@ const AssessmentItem = ({assessment}: Props) => {
 			dispatch(setGrade(null))
 		}
 		dispatch(deleteAssessment(id))
-		dispatch(decrementWeightSum(weight))
 	}
 
 	return (

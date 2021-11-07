@@ -2,7 +2,7 @@ import {useState} from 'react'
 import {v4 as uuidv4} from 'uuid'
 import {useAppDispatch} from '../app/hooks'
 import {IAssessment} from '../definitions'
-import {addAssessment, incrementWeightSum} from '../features/assessmentsSlice'
+import {addAssessment} from '../features/assessmentsSlice'
 import {setErrors} from '../features/errorSlice'
 import {isAssessmentValid} from '../utils'
 
@@ -32,7 +32,6 @@ const AssessentForm = () => {
 		// dispatch action to set errors to empty
 		dispatch(setErrors(errors))
 		dispatch(addAssessment(newAssesment))
-		dispatch(incrementWeightSum(newAssesment.weight))
 
 		setAssessmentName('')
 		setWeight('')
