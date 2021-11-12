@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type State = null | number
 
-const initialState: State = null
+let finalGrade = localStorage.getItem('finalGrade')
+const initialState: State = finalGrade !== null ? JSON.parse(finalGrade) : null
 
 const gradeSlice = createSlice({
     name: "grade",
@@ -10,6 +11,7 @@ const gradeSlice = createSlice({
     reducers: {
         setGrade: (state, action) => {
             state = action.payload
+            localStorage.setItem('finalGrade', JSON.stringify(action.payload))
             return state
         }
     }
